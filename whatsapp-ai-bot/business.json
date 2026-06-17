@@ -1,0 +1,42 @@
+{
+  "BUSINESS_NAME": "Salon La Mode",
+  "OWNER_NAME": "Grace",
+  "PHONE": "+254712345678",
+  "MPESA_TILL": "654321",
+  "BUSINESS_DETAILS": "Premium salon offering haircuts, braids, treatments, and beauty consultations",
+  "LOCATION": "Westlands, Nairobi",
+  "HOURS": "Mon-Sat: 9AM-6PM | Sun: 10AM-4PM",
+  "products": [
+    {
+      "name": "Haircut",
+      "price": "KES 500",
+      "description": "Professional haircut for all hair types"
+    },
+    {
+      "name": "Braids",
+      "price": "KES 1,500-3,000",
+      "description": "Box braids, cornrows, or other styles"
+    },
+    {
+      "name": "Hair Treatment",
+      "price": "KES 800",
+      "description": "Deep conditioning and hair repair treatment"
+    },
+    {
+      "name": "Beauty Consultation",
+      "price": "FREE",
+      "description": "Expert advice on style and beauty products"
+    },
+    {
+      "name": "Makeup",
+      "price": "KES 1,200",
+      "description": "Professional makeup for events"
+    }
+  ],
+  "faqs": {
+    "hours": "We're open Mon-Sat 9AM-6PM and Sunday 10AM-4PM",
+    "location": "We're located in Westlands, Nairobi",
+    "booking": "Send us your name, phone, location and preferred service",
+    "payment": "We accept M-Pesa (Till: 654321) and cash"
+  }
+}
