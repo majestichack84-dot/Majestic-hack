@@ -12,6 +12,7 @@ A plug-and-play WhatsApp bot powered by OpenAI that replies like a human sales a
 - ✅ **Error Handling** - Graceful fallbacks if AI fails
 - ✅ **Easy Setup** - 5 minutes to get running
 - ✅ **Hot Reload** - Optional `npm run dev` with auto-restart
+- ✅ **Dual Login** - Pairing code OR QR scan (pairing code works better on desktop)
 
 ## 📋 Prerequisites
 
@@ -20,7 +21,7 @@ A plug-and-play WhatsApp bot powered by OpenAI that replies like a human sales a
 - WhatsApp account
 - ~50MB disk space for node_modules
 
-## 🚀 Quick Start
+## �� Quick Start
 
 ### Step 1: Install Dependencies
 
@@ -41,6 +42,7 @@ Then edit `.env`:
 ```env
 OPENAI_API_KEY=sk-your-actual-key-here
 SESSION_ID=bot_session
+OWNER_PHONE=+254712345678
 ```
 
 **Get your OpenAI key:**
@@ -77,16 +79,37 @@ Edit `business.json` with your business details:
 npm start
 ```
 
-You'll see:
+You'll see one of two login methods:
+
+**Option A: Pairing Code** (Recommended for desktop)
 ```
-🚀 Starting AI WhatsApp Bot...
+📱 PAIRING CODE METHOD
+==================================================
+Your Pairing Code: ABC-DEFG-HIJK
 
-📱 Scan this QR code with WhatsApp:
-[QR CODE APPEARS]
+On Your Phone:
+1. Open WhatsApp
+2. Go to Settings → Linked Devices
+3. Select "Link with Phone Number"
+4. Enter this code when prompted
+==================================================
 ```
 
-### Step 5: Scan QR Code
+**Option B: QR Code** (Fallback if pairing code fails)
+```
+📱 SCAN QR CODE METHOD (Backup):
+(QR code appears above in terminal)
+```
 
+### Step 5: Link to WhatsApp
+
+**Using Pairing Code (Recommended):**
+1. Open **WhatsApp** on your phone
+2. Go to **Settings → Linked Devices → Link with Phone Number**
+3. **Type the pairing code** from terminal or WhatsApp message
+4. Bot connects automatically ✅
+
+**Using QR Code (Backup):**
 1. Open **WhatsApp** on your phone
 2. Go to **Settings → Linked Devices → Link a Device**
 3. **Point your phone camera** at the QR code in terminal
@@ -207,6 +230,16 @@ What's your phone number so she can reach you?
 
 ## 🐛 Troubleshooting
 
+### "No pairing code appearing?"
+- Make sure `OWNER_PHONE` is set in `.env` (format: +254712345678)
+- Try removing `auth_info_*` folder and restarting
+- If still failing, use QR code method instead
+
+### "Pairing code not sent to WhatsApp?"
+- Code will send to your WhatsApp only after first connection
+- The console will always show the code regardless
+- You can manually type it in WhatsApp → Linked Devices
+
 ### "No QR code appearing?"
 - Make sure terminal is wide enough (at least 80 chars)
 - Delete `auth_info_*` folder and restart
@@ -231,7 +264,7 @@ What's your phone number so she can reach you?
 ### "WhatsApp shows 'device not recognized'?"
 - Delete the `auth_info_*` folder
 - Restart the bot: `npm start`
-- Scan QR code again within 30 seconds
+- Use pairing code or scan QR code again within 30 seconds
 - Don't use the account on web/desktop during setup
 
 ## 💰 Costs
@@ -251,6 +284,7 @@ What's your phone number so she can reach you?
 - **Keep API key private** (visible in `.env` only)
 - **Don't share auth_info folder** (contains session tokens)
 - **Rotate API key regularly** if exposed
+- **Pairing code expires** - It's only valid for ~60 seconds, get a new one if it expires
 
 ## 🚀 Deployment
 
@@ -281,7 +315,7 @@ docker run -d --name bot whatsapp-bot
 ### Option 3: Railway/Render (Free)
 1. Push to GitHub
 2. Connect repo to Railway/Render
-3. Add `OPENAI_API_KEY` environment variable
+3. Add `OPENAI_API_KEY` and `OWNER_PHONE` environment variables
 4. Deploy
 
 ## 📝 Customization
@@ -323,17 +357,35 @@ Each buyer needs their own OpenAI key. Takes 2 mins + you get $5 free credit.
 **Step 2: Add to Bot**
 1. Rename `.env.example` to `.env`
 2. Paste your key: `OPENAI_API_KEY=sk-your-key-here`
-3. Change `SESSION_ID=salon-bot` to your business name
+3. Add your phone: `OWNER_PHONE=+254712345678`
+4. Change `SESSION_ID=bot_session` to your business name
 
 **Step 3: Add $5 Credit**
 1. Go to https://platform.openai.com/account/billing
 2. Click "Add payment method" → Add $5
 3. $5 = ~30,000 customer chats on `gpt-4o-mini`. Most small biz spend <$2/month.
 
+**Step 4: Login Methods**
+
+You have two options:
+
+**Option A: Pairing Code (Recommended for Desktop)**
+- Run `npm start`
+- Copy the 12-character code from console
+- On WhatsApp phone: Settings → Linked Devices → Link with Phone Number → Paste code
+- Bot connects instantly ✅
+
+**Option B: QR Code (Scan with Phone)**
+- Run `npm start`
+- Scan QR code with WhatsApp on your phone
+- Settings → Linked Devices → Link a Device
+- Bot connects within seconds ✅
+
 **Important:** 
 - Don't share your key. If leaked, someone else can use your credits.
 - Model used: `gpt-4o-mini` = cheapest + fastest for WhatsApp bots.
 - Out of credit? Bot will reply with error. Just top up at OpenAI.
+- Pairing code expires after ~60 seconds, request a new one by restarting.
 
 Need help? DM me after purchase and I'll set it up for you +$10 
 
