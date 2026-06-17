@@ -311,6 +311,32 @@ Load business data from Google Sheets API instead of JSON
 - **Baileys Docs**: https://github.com/WhiskeySockets/Baileys
 - **WhatsApp Bot Tips**: Search "WhatsApp bot best practices"
 
+### Buyer Setup: Add Your Own OpenAI API Key
+
+Each buyer needs their own OpenAI key. Takes 2 mins + you get $5 free credit.
+
+**Step 1: Get API Key**
+1. Go to https://platform.openai.com/api-keys
+2. Sign up/Login → Click "Create new secret key" 
+3. Copy the key starting with `sk-...`
+
+**Step 2: Add to Bot**
+1. Rename `.env.example` to `.env`
+2. Paste your key: `OPENAI_API_KEY=sk-your-key-here`
+3. Change `SESSION_ID=salon-bot` to your business name
+
+**Step 3: Add $5 Credit**
+1. Go to https://platform.openai.com/account/billing
+2. Click "Add payment method" → Add $5
+3. $5 = ~30,000 customer chats on `gpt-4o-mini`. Most small biz spend <$2/month.
+
+**Important:** 
+- Don't share your key. If leaked, someone else can use your credits.
+- Model used: `gpt-4o-mini` = cheapest + fastest for WhatsApp bots.
+- Out of credit? Bot will reply with error. Just top up at OpenAI.
+
+Need help? DM me after purchase and I'll set it up for you +$10 
+
 ## 📄 License
 
 MIT License - Feel free to use and modify
